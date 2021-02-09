@@ -16,13 +16,7 @@ from azureml.data.dataset_factory import TabularDatasetFactory
 
 data_source = "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv"
 
-ds = TabularDatasetFactory.(data_source)
-
-x, y = clean_data(ds)
-
-# TODO: Split data into train and test sets.
-
-x_train,y_train, x_test, y_test = train_test_split(x,y,test_size=0.3,random_state=101)
+ds = TabularDatasetFactory.from_delimited_files(data_source)
 
 run = Run.get_context()
 
@@ -51,7 +45,15 @@ def clean_data(data):
     x_df["poutcome"] = x_df.poutcome.apply(lambda s: 1 if s == "success" else 0)
 
     y_df = x_df.pop("y").apply(lambda s: 1 if s == "yes" else 0)
+
+    return x_df, y_df
     
+x, y = clean_data(ds)
+
+# TODO: Split data into train and test sets.
+
+x_train, x_test, y_train, y_test = train_test_split(x,y,test_size=0.3,random_state=101)
+
 
 def main():
     # Add arguments to script
@@ -72,9 +74,9 @@ def main():
 
     # Saving model
     try:
-        os.makedirs("Output",exist_ok=True)
+        os.makedirs("./output",exist_ok=True)
         print("Directory created successfully")
-        joblib.dump(value=model,filename='output/LogisticRegModel.pkl')
+        joblib.dump(value=model,filename='./output/LogisticRegModel.pkl')
     except OSError as error:
         print("Could bot create")
     
