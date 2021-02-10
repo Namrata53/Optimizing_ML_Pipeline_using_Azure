@@ -76,7 +76,7 @@ def main():
     try:
         os.makedirs("./output",exist_ok=True)
         print("Directory created successfully")
-        joblib.dump(value=model,filename='./output/LogisticRegModel.pkl')
+        joblib.dump(value=model,filename='output/LogisticRegModel.pkl')
     except OSError as error:
         print("Could bot create")
     
