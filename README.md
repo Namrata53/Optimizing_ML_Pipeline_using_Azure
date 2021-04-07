@@ -12,11 +12,12 @@ This model is then compared to an Azure AutoML run.
 In the first approach the optimization was based on using hyperdrive for hyper parameter tuning for Scikit-learn Logistic Regression. Here I got an accuracy of 0.90895.
 In the second approach I used AutoML. The best model selected by AutoML was VotingEnsemble with an accuracy of 0.91697 making it the best approach here.
 
-![image](https://user-images.githubusercontent.com/27814345/113925128-446bae00-9808-11eb-898d-9a5f6045be24.png)
+![bestmodel_autoML](https://user-images.githubusercontent.com/27814345/113926070-5f8aed80-9809-11eb-9e06-bf850d45e435.png)
 
 
 ## Scikit-learn Pipeline
-**Explain the pipeline architecture, including data, hyperparameter tuning, and classification algorithm.**
+**Pipeline architecture:** 
+including data, hyperparameter tuning, and classification algorithm.**
 
 **What are the benefits of the parameter sampler you chose?**
 
